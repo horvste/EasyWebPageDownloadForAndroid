@@ -41,8 +41,8 @@ Then we call '.downloadHtml()':
 ```
 webPage.downloadHtml();
 ```
-
-Full Example:<p>
+<p><p><p>
+**Full Example:**<p>
 
 Example Of Searching Google Programmatically: https://github.com/horvste/EasyWebPageDownloadForAndroidExample/tree/master
 
