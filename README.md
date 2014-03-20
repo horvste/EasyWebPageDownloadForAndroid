@@ -6,7 +6,7 @@ Good for connecting to rest api's, html parsing, and many other uses!
 Example Of Searching Google Programmatically: https://github.com/horvste/EasyWebPageDownloadForAndroidExample/tree/master
 
 
-`/**
+```/**
 * Simple Activity to demonstrate webpagedownoadlib
 *
 * @author Steven Horvatin
@@ -120,5 +120,5 @@ public class MainActivity extends Activity {
 		}
 	}
 
-}`
+}```
 
