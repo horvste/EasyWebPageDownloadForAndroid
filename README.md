@@ -1,7 +1,36 @@
 EasyWebPageDownloadForAndroid
 =============================
 
-Good for connecting to rest api's, html parsing, and many other uses!
+Good for connecting to REST API's, HTML parsing, and many other uses. Using this library is meant to be easy:
+1. Create a class which implements OnProgressUpdate
+2. Instantiate DownloadWebPage object
+3. Call .downloadHtml() from the DownloadWebPage
+
+```public class SampleClass implmeents  implements OnProgressUpdate {
+
+		@Override
+		public void onUpdate(Integer percentProgress) {
+			
+		}
+
+		@Override
+		public void onUpdateFailure() {
+		
+		}
+
+		@Override
+		public void onSuccess(StringBuilder result) {
+
+		}
+
+		@Override
+		public void onFailure() {
+
+		}
+	}
+
+}```
+
 
 Example Of Searching Google Programmatically: https://github.com/horvste/EasyWebPageDownloadForAndroidExample/tree/master
 
