@@ -14,13 +14,17 @@ Example Of Searching Google Programmatically: https://github.com/horvste/EasyWeb
 * @author Steven Horvatin
 *
 */
-
+/**
+*
+*add Listeners to views
+*/
 	public void setListeners() {
 		mSearchGoogleButton.setOnClickListener(new OnClickListener() {
-
+		
 			@Override
 			public void onClick(View arg0) {
 				String query = mSearchQueryEditText.getText().toString();
+				//Instantiating a DownloadWebPage Object. This is the IMPORTANT part:
 				DownloadWebPage downloadWebPage = new DownloadWebPage(
 						new GoogleWebPageDownloader(MainActivity.this,
 								mShowHtmlTextView), query);
@@ -30,7 +34,9 @@ Example Of Searching Google Programmatically: https://github.com/horvste/EasyWeb
 		});
 	}
 
-
+/**
+*Has to implement OnProgressUpdate to satisfy the DownloadWebPage constructor.
+*/
 	static class GoogleWebPageDownloader implements OnProgressUpdate {
 		private Context context;
 
