@@ -3,8 +3,6 @@ EasyWebPageDownloadForAndroid
 
 Good for connecting to REST API's, HTML parsing, and many other uses. Using this library is meant to be easy:
 <p>1. Create a class which implements OnProgressUpdate <p>
-2. Instantiate DownloadWebPage object<p>
-3. Call .downloadHtml() from the DownloadWebPage<p>
 
 ```
 public class SampleClass implements OnProgressUpdate {
@@ -32,15 +30,17 @@ public class SampleClass implements OnProgressUpdate {
 
 }
 ```
+2. Instantiate DownloadWebPage object<p>
 
-Then we instantiate a 'DownloadWebPage' object:
 ```
 DownloadWebPage webPage = new DownloadWebPage(new SampleClass(), myUrl);
 ```
-Then we call '.downloadHtml()':
+
+3. Call .downloadHtml() from the DownloadWebPage<p>
 ```
 webPage.downloadHtml();
 ```
+
 <p><p><p>
 **Full Example:**<p>
 
