@@ -14,10 +14,6 @@ Example Of Searching Google Programmatically: https://github.com/horvste/EasyWeb
 * @author Steven Horvatin
 *
 */
-/**
-*
-*add Listeners to views
-*/
 public class MainActivity extends Activity {
 	private static final String SEARCHGOOGLE = "Search Google";
 	private static final String RESULT = "result";
@@ -55,6 +51,8 @@ public class MainActivity extends Activity {
 			@Override
 			public void onClick(View arg0) {
 				String query = mSearchQueryEditText.getText().toString();
+				
+				//This is the IMPORTANT PART:
 				DownloadWebPage downloadWebPage = new DownloadWebPage(
 						new GoogleWebPageDownloader(MainActivity.this,
 								mShowHtmlTextView), GoogleWebPageDownloader
@@ -71,7 +69,7 @@ public class MainActivity extends Activity {
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
-
+	
 	static class GoogleWebPageDownloader implements OnProgressUpdate {
 		private Context context;
 		private ProgressDialog mDialog;
@@ -98,8 +96,8 @@ public class MainActivity extends Activity {
 			return url;
 
 		}
-
-	**	@Override
+		
+		@Override
 		public void onUpdate(Integer percentProgress) {
 			mDialog.setProgress(percentProgress);
 		}
@@ -123,7 +121,7 @@ public class MainActivity extends Activity {
 			mDialog.dismiss();
 			Toast.makeText(context, SOMETHINGWENTWRONG, Toast.LENGTH_SHORT)
 					.show();
-		}**
+		}
 	}
 
 }```
