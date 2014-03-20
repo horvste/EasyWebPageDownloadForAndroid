@@ -7,7 +7,7 @@ Good for connecting to REST API's, HTML parsing, and many other uses. Using this
 3. Call .downloadHtml() from the DownloadWebPage<p>
 
 ```
-public class SampleClass implmeents  implements OnProgressUpdate {
+public class SampleClass implements OnProgressUpdate {
 
 		@Override
 		public void onUpdate(Integer percentProgress) {
@@ -33,6 +33,16 @@ public class SampleClass implmeents  implements OnProgressUpdate {
 }
 ```
 
+Then we instantiate a 'DownloadWebPage' object:
+```
+DownloadWebPage webPage = new DownloadWebPage(new SampleClass(), myUrl);
+```
+Then we call '.downloadHtml()':
+```
+webPage.downloadHtml();
+```
+
+Full Example:<p>
 
 Example Of Searching Google Programmatically: https://github.com/horvste/EasyWebPageDownloadForAndroidExample/tree/master
 
