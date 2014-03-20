@@ -6,7 +6,8 @@ Good for connecting to REST API's, HTML parsing, and many other uses. Using this
 2. Instantiate DownloadWebPage object
 3. Call .downloadHtml() from the DownloadWebPage
 
-```public class SampleClass implmeents  implements OnProgressUpdate {
+```
+public class SampleClass implmeents  implements OnProgressUpdate {
 
 		@Override
 		public void onUpdate(Integer percentProgress) {
@@ -29,7 +30,8 @@ Good for connecting to REST API's, HTML parsing, and many other uses. Using this
 		}
 	}
 
-}```
+}
+```
 
 
 Example Of Searching Google Programmatically: https://github.com/horvste/EasyWebPageDownloadForAndroidExample/tree/master
