@@ -167,5 +167,5 @@ public class MainActivity extends Activity {
 
 }
 ```
-Program's that use this library:<p>https://play.google.com/store/apps/details?id=org.fortschools.app
+**Apps that use this library**:<p>https://play.google.com/store/apps/details?id=org.fortschools.app
 
