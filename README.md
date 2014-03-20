@@ -1,7 +1,7 @@
 EasyWebPageDownloadForAndroid
 =============================
 
-Good for connecting to ***REST API's***, ***HTML parsing***, and many other uses. Using this library is meant to be easy:
+Good for connecting to ***REST API's***, ***HTML parsing***, and ***many other uses***. Using this library is meant to be easy:
 <p>1. Create a class which implements OnProgressUpdate <p>
 
 ```
