@@ -99,7 +99,7 @@ public class MainActivity extends Activity {
 
 		}
 
-	<b>	@Override
+	**	@Override
 		public void onUpdate(Integer percentProgress) {
 			mDialog.setProgress(percentProgress);
 		}
@@ -123,7 +123,7 @@ public class MainActivity extends Activity {
 			mDialog.dismiss();
 			Toast.makeText(context, SOMETHINGWENTWRONG, Toast.LENGTH_SHORT)
 					.show();
-		}<b>
+		}**
 	}
 
 }```
