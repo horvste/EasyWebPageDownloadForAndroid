@@ -14,26 +14,56 @@ import android.os.AsyncTask;
 /**
  * Downloads a webpage's html and acts according to the interface.
  * 
- * @author steven
+ * @see AsyncTask
+ * @author Steven Horvatin
  * 
  */
 public class DownloadWebPage extends AsyncTask<String, Integer, StringBuilder> {
 	private OnProgressUpdate updateInter;
 	private String url;
 
-	public DownloadWebPage() {
+	/**
+	 * Visibility should be kept private for encapsulation purposes.
+	 */
+	private DownloadWebPage() {
 		super();
 	}
 
+	/**
+	 * Instantiates a DownloadWebPage Object, you should only use this
+	 * constructor if you don't know which url you will be downloading at the
+	 * moment.
+	 * 
+	 * @param updateInter
+	 *            is the interface which will be updated when you call
+	 *            downloadHtml() or downloadHtml(String urlToDownload)
+	 */
 	public DownloadWebPage(OnProgressUpdate updateInter) {
 		this.updateInter = updateInter;
 	}
 
+	/**
+	 * Instantiates a DownloadWebPage Object. You should use this constructor if
+	 * you aren't familliar with this library.
+	 * 
+	 * @param updateInter
+	 *            is the interface which will be updated when you call
+	 *            downloadHtml() or downloadHtml(String urlToDownload)
+	 * @param url
+	 *            is the url which html will be downloaded.
+	 */
 	public DownloadWebPage(OnProgressUpdate updateInter, String url) {
 		this(updateInter);
 		this.url = url;
 	}
 
+	/**
+	 * @param url
+	 *            is the amount of url's to download. Accepting a variable
+	 *            amount of arguments is not appropriate in this scenario,
+	 *            however we have to because is is a superclass method.
+	 * 
+	 */
 	@Override
 	protected StringBuilder doInBackground(String... url) {
 		try {
@@ -44,22 +74,38 @@ public class DownloadWebPage extends AsyncTask<String, Integer, StringBuilder> {
 					response.getEntity().getContent()));
 			long content = response.getEntity().getContentLength();
 			String line = "";
+			// use the StringBuilder for efficiency. In java Strings are
+			// immutable.
 			StringBuilder htmlBuilder = new StringBuilder();
 			long bytesRead = 0;
+			// while there is html left we will loop.
 			while ((line = rd.readLine()) != null) {
 				htmlBuilder.append(line);
 				bytesRead = bytesRead + line.getBytes().length + 2;
+				// getting the progress from the html, this is not guaranteed.
 				publishProgress(new Integer[] { (int) (((double) bytesRead / (double) content) * 100) });
 			}
 			return htmlBuilder;
 		} catch (IOException e) {
+			// Poor connection or something else went wrong.
 			return null;
 		}
 
 	}
 
+	/**
+	 * Updating the progress for the interface.
+	 * 
+	 * @param values
+	 *            currently not using the variable arguments, that is values
+	 *            will only have one element at the zero index.
+	 * 
+	 */
 	@Override
 	protected void onProgressUpdate(Integer... values) {
+		// if there is a progress to update: update the interface with the
+		// proper percentage complete. Or else we tell the interface the update
+		// is failed and we cannot find the progress.
 		if (values[0].equals(Math.abs(values[0]))) {
 			updateInter.onUpdate(values[0]);
 		} else if (!values[0].equals(Math.abs(values[0]))) {
@@ -67,8 +113,14 @@ public class DownloadWebPage extends AsyncTask<String, Integer, StringBuilder> {
 		}
 	}
 
+	/**
+	 * @param result
+	 *            the html which can be null or contain a String of html.
+	 */
 	@Override
 	protected void onPostExecute(StringBuilder result) {
+		// if there is nothing in result, the download has failed. Or else
+		// we have succeeded and return the result (html).
 		if (result == null) {
 			updateInter.onFailure();
 		} else if (result != null) {
@@ -82,6 +134,10 @@ public class DownloadWebPage extends AsyncTask<String, Integer, StringBuilder> {
 
 	}
 
+	/**
+	 * Downloads the html from the last time the url was set, either in the
+	 * constructor or in the downloadHtml(String urlToDownload) method.
+	 */
 	public void downloadHtml() {
 		if (url == null) {
 			updateInter.onFailure();
@@ -93,11 +149,18 @@ public class DownloadWebPage extends AsyncTask<String, Integer, StringBuilder> {
 			iseDownloader.setOnProgressUpdate(updateInter);
 			iseDownloader.execute(new String[] { url });
 		} else if (getStatus().equals(AsyncTask.Status.RUNNING)) {
+			// TODO: Decide if we should do anything here.
 		} else {
 			execute(new String[] { url });
 		}
 	}
 
+	/**
+	 * 
+	 * @param urlToDownload
+	 *            will be set to the current url which will be used in
+	 *            conjuction with the OnProgressUpdate interface.
+	 */
 	public void downloadHtml(String urlToDownload) {
 		this.url = urlToDownload;
 		downloadHtml();
